@@ -1,3 +1,13 @@
+// Copyright (c) 2012-2019 University of Lyon and CNRS (France).
+// All rights reserved.
+//
+// This file is part of MEPP2; you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published 
+// by the Free Software Foundation; either version 3 of the License, 
+// or (at your option) any later version.
+//
+// This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+// WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 // #include "Visualization/SimpleWindow.h"
 #include "Visualization/Helpers/QtHelpers.h"
 
@@ -172,7 +182,7 @@ FEVV::SimpleWindow::init(const bool _test, const int _width, const int _height)
   if(_test)
   {
     connect(&timerQuit, SIGNAL(timeout()), this, SLOT(close()));
-    timerQuit.start(5000);
+    timerQuit.start(8000);
   }
   // --- JUST HERE FOR AUTOMATIC TEST ---
 
@@ -383,10 +393,14 @@ FEVV::SimpleWindow::onModificationParam(std::string _pluginName,
 inline void
 FEVV::SimpleWindow::onApplyButton()
 {
-  if(!Assert::check(isValid(),
-                    "is not valid (see init() or attach()). Leaving ...",
-                    "SimpleWindow::onApplyButton"))
+  if(!isValid())
   {
+    QMessageBox::information(this, "",
+		QObject::tr("Please, first <b>open a mesh</b><br>"
+					"<br>"
+					"or if necessary with some plugins <b>use an empty child window</b><br>"
+					"(see 'Open -> EMPTY mode' <b>key</b> in 'About MEPP2 / Help' menu)."));
+
     return;
   }
 
@@ -525,7 +539,7 @@ inline void
 FEVV::SimpleWindow::notify()
 {
   if(!Assert::check(isValid(),
-                    "is not valid (see init() or attach()). Leaving ...",
+                    "is not valid (see init() or attach()). Leaving...",
                     "SimpleWindow::notify"))
   {
     return;
@@ -3196,7 +3210,7 @@ inline void
 FEVV::SimpleWindow::onAddBall()
 {
   if(!Assert::check(isValid(),
-                    "is not valid (see init() or attach()). Leaving ...",
+                    "is not valid (see init() or attach()). Leaving...",
                     "SimpleWindow::onAddBall"))
   {
     return;

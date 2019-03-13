@@ -1,14 +1,14 @@
+// Copyright (c) 2012-2019 University of Lyon and CNRS (France).
+// All rights reserved.
+//
+// This file is part of MEPP2; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as
+// published by the Free Software Foundation; either version 3 of
+// the License, or (at your option) any later version.
+//
+// This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+// WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #pragma once
-
-#if defined(KRingTool_RECURSES)
-#error Recursive header files inclusion detected in KRingTool.h
-#else // defined(KRingTool_RECURSES)
-/** Prevents recursive inclusion of headers. */
-#define KRingTool_RECURSES
-
-#if !defined KRingTool_h
-/** Prevents repeated inclusion of headers. */
-#define KRingTool_h
 
 #include <map>
 #include <vector>
@@ -21,9 +21,21 @@
 namespace FEVV {
 namespace Operators {
 
-
-// extract vertices which are at most k (inclusive)
-// far from vertex v in the graph of edges
+ /**
+ * \brief Extract vertices which are at most k (inclusive)
+ *        far from vertex v in the graph of edges.
+ * \tparam  FaceGraph a Mesh type that provides a Model of the
+ *          FaceGraph Concept through a boost::graph_traits<>
+ *          specialization.
+ * \tparam  GeometryTraits The geometric kernel when available. This is
+ *          defaulted to FEVV::Geometry_traits<FaceGraph>.
+ * \param[in]  v The vertex whose k-rings are computed. 
+ * \param[in]  g The FaceGraph instance out of which the h edge will be
+ *             deleted.
+ * \param[in]  k The maximum distance to include a vertex v' neighbor. 
+ * \param[out] qv The std::vector of vertices at most k (inclusive)
+ *             far from vertex v in the graph of edges
+ */ 
 template< typename FaceGraph,
           typename GeometryTraits = FEVV::Geometry_traits< FaceGraph > >
 void
@@ -78,9 +90,19 @@ extract_k_ring(
 }
 
 
-/// extract halfedges which have v as target vertex
-/// all extracted halfedges are associated to a face, meaning that
-/// for a border halfedge, it is its opposite halfedge that is extracted
+ /**
+ * \brief Extract halfedges which have v as target vertex.
+ *        All extracted halfedges are associated to a face, 
+ *        meaning that for a border halfedge, it is its 
+ *        opposite halfedge that is extracted.
+ * \tparam  FaceGraph a Mesh type that provides a Model of the
+ *          FaceGraph Concept through a boost::graph_traits<>
+ *          specialization.
+ * \param[in]  v The vertex whose incident halfedges are extracted. 
+ * \param[in]  g The FaceGraph instance out of which the h edge will be
+ *             deleted.
+ * \param[out] qh The std::vector of halfedges incident to v.
+ */  
 template< typename FaceGraph >
 void
 extract_vertex_star(
@@ -154,8 +176,20 @@ extract_vertex_star(
   // std::cout << "qh.size() = " << qh.size() << std::endl;
 }
 
-// extract vertices which are at exactly 1
-// far from vertex v in the graph of edges
+ /**
+ * \brief Extract vertices which are at exactly 1
+ *        far from vertex v in the graph of edges.
+ * \tparam  FaceGraph a Mesh type that provides a Model of the
+ *          FaceGraph Concept through a boost::graph_traits<>
+ *          specialization.
+ * \tparam  GeometryTraits The geometric kernel when available. This is
+ *          defaulted to FEVV::Geometry_traits<FaceGraph>.
+ * \param[in]  v The vertex whose 1-ring is computed. 
+ * \param[in]  g The FaceGraph instance out of which the h edge will be
+ *             deleted.
+ * \param[out] qv The std::vector of vertices at exactly 1
+ *             far from vertex v in the graph of edges
+ */ 
 template< typename FaceGraph,
           typename GeometryTraits = FEVV::Geometry_traits< FaceGraph > >
 void
@@ -171,8 +205,3 @@ extract_1_ring_not_including_v(
 
 } // namespace Operators
 } // namespace FEVV
-
-#endif // !defined KRingTool_h
-
-#undef KRingTool_RECURSES
-#endif // else defined(KRingTool_RECURSES)

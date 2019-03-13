@@ -1,14 +1,15 @@
+// Copyright (c) 2012-2019 University of Lyon and CNRS (France).
+// All rights reserved.
+//
+// This file is part of MEPP2; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as
+// published by the Free Software Foundation; either version 3 of
+// the License, or (at your option) any later version.
+//
+// This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+// WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #pragma once
 
-#if defined(SplitEdgeNonManifoldFilter_RECURSES)
-#error Recursive header files inclusion detected in SplitEdgeNonManifoldFilter.h
-#else // defined(SplitEdgeNonManifoldFilter_RECURSES)
-/** Prevents recursive inclusion of headers. */
-#define SplitEdgeNonManifoldFilter_RECURSES
-
-#if !defined SplitEdgeNonManifoldFilter_h
-/** Prevents repeated inclusion of headers. */
-#define SplitEdgeNonManifoldFilter_h
 //#include <CGAL/boost/graph/internal/helpers.h> // set_border
 #include <boost/graph/graph_traits.hpp>
 #include <CGAL/boost/graph/iterator.h>
@@ -240,8 +241,3 @@ typename boost::graph_traits<MutableFaceIncidentGraph>::edge_descriptor
 
 } // namespace Operators
 } // namespace FEVV
-
-#endif // !defined SplitEdgeNonManifoldFilter_h
-
-#undef SplitEdgeNonManifoldFilter_RECURSES
-#endif // else defined(SplitEdgeNonManifoldFilter_RECURSES)
