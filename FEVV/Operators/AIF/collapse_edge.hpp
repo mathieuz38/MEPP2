@@ -1,14 +1,14 @@
+// Copyright (c) 2012-2019 University of Lyon and CNRS (France).
+// All rights reserved.
+//
+// This file is part of MEPP2; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as
+// published by the Free Software Foundation; either version 3 of
+// the License, or (at your option) any later version.
+//
+// This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+// WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #pragma once
-
-#if defined(CollapseEdgeNonManifoldFilter_RECURSES)
-#error Recursive header files inclusion detected in CollapseEdgeNonManifoldFilter.h
-#else // defined(CollapseEdgeNonManifoldFilter_RECURSES)
-/** Prevents recursive inclusion of headers. */
-#define CollapseEdgeNonManifoldFilter_RECURSES
-
-#if !defined CollapseEdgeNonManifoldFilter_h
-/** Prevents repeated inclusion of headers. */
-#define CollapseEdgeNonManifoldFilter_h
 
 #include <boost/graph/graph_traits.hpp>
 #include <CGAL/boost/graph/iterator.h>
@@ -40,14 +40,10 @@ typedef FEVV::DataStructures::AIF::AIFTopologyHelpers AIFHelpers;
  *          deleted.
  * \param e The edge to be deleted.
  */
-template<
-    typename MutableFaceIncidentGraph > // similar concept to
-                                        // MutableCellIncidentGraph, but limited
-                                        // to 0, 1 and 2 dimensional cells
-                                        void
-                                        collapse_edge_keep_source(
-                                            MutableFaceIncidentGraph &g,
-                                            typename boost::graph_traits<
+template< typename MutableFaceIncidentGraph > 
+void
+collapse_edge_keep_source(MutableFaceIncidentGraph &g,
+                          typename boost::graph_traits<
                                                 MutableFaceIncidentGraph >::
                                                 edge_descriptor &e)
 {
@@ -180,14 +176,9 @@ template<
  *          deleted.
  * \param e The edge to be deleted.
  */
-template<
-    typename MutableFaceIncidentGraph > // similar concept to
-                                        // MutableCellIncidentGraph, but limited
-                                        // to 0, 1 and 2 dimensional cells
-                                        void
-                                        collapse_edge_keep_target(
-                                            MutableFaceIncidentGraph &g,
-                                            typename boost::graph_traits<
+template< typename MutableFaceIncidentGraph >
+void collapse_edge_keep_target(MutableFaceIncidentGraph &g,
+                               typename boost::graph_traits<
                                                 MutableFaceIncidentGraph >::
                                                 edge_descriptor &e)
 {
@@ -204,8 +195,3 @@ template<
 
 } // namespace Operators
 } // namespace FEVV
-
-#endif // !defined CollapseEdgeNonManifoldFilter_h
-
-#undef CollapseEdgeNonManifoldFilter_RECURSES
-#endif // else defined(CollapseEdgeNonManifoldFilter_RECURSES)

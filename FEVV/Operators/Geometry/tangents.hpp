@@ -1,7 +1,16 @@
+// Copyright (c) 2012-2019 University of Lyon and CNRS (France).
+// All rights reserved.
+//
+// This file is part of MEPP2; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as
+// published by the Free Software Foundation; either version 3 of
+// the License, or (at your option) any later version.
+//
+// This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+// WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #pragma once
 
 #include <cmath>
-
 
 namespace FEVV {
 namespace Operators {
@@ -10,12 +19,12 @@ namespace Operators {
  * \brief  Calculate the actual face tangent from three connected vertices'
  * positions & texture coordinates.
  *
- * \param  pt1                 first vertex's position.
- * \param  pt2                 second vertex's position.
- * \param  pt3                 third vertex's position.
- * \param  uv1                 first vertex's texture coordinates.
- * \param  uv2                 second vertex's texture coordinates.
- * \param  uv3                 third vertex's texture coordinates.
+ * \param[in]  pt1                 first vertex's position.
+ * \param[in]  pt2                 second vertex's position.
+ * \param[in]  pt3                 third vertex's position.
+ * \param[in]  uv1                 first vertex's texture coordinates.
+ * \param[in]  uv2                 second vertex's texture coordinates.
+ * \param[in]  uv3                 third vertex's texture coordinates.
  *
  * \return  calculated face tangent.
  */

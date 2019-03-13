@@ -1,14 +1,14 @@
+// Copyright (c) 2012-2019 University of Lyon and CNRS (France).
+// All rights reserved.
+//
+// This file is part of MEPP2; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as
+// published by the Free Software Foundation; either version 3 of
+// the License, or (at your option) any later version.
+//
+// This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+// WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #pragma once
-
-#if defined(TrianglesTool_RECURSES)
-#error Recursive header files inclusion detected in triangles.h
-#else // defined(TrianglesTool_RECURSES)
-/** Prevents recursive inclusion of headers. */
-#define TrianglesTool_RECURSES
-
-#if !defined TrianglesTool_h
-/** Prevents repeated inclusion of headers. */
-#define TrianglesTool_h
 
 #include <boost/graph/graph_traits.hpp>
 #include <boost/graph/properties.hpp>
@@ -26,10 +26,10 @@ namespace Geometry {
  * points).
  *
  * \tparam GeometryTraits The geometric kernel.
- * \param a The first point.
- * \param b The second point.
- * \param c The third point.
- * \param gt The geometry trait object.
+ * \param[in] a The first point.
+ * \param[in] b The second point.
+ * \param[in] c The third point.
+ * \param[in] gt The geometry trait object.
  * \return The barycenter/mean position of the 3 input points (Point).
  */
 template< typename GeometryTraits >
@@ -49,10 +49,10 @@ triangle_barycenter(const typename GeometryTraits::Point &a,
  * \brief   Compute the perimeter of a triangle (given by 3 points).
  *
  * \tparam GeometryTraits The geometric kernel.
- * \param a The first point.
- * \param b The second point.
- * \param c The third point.
- * \param gt The geometry trait object.
+ * \param[in] a The first point.
+ * \param[in] b The second point.
+ * \param[in] c The third point.
+ * \param[in] gt The geometry trait object.
  * \return The triangle perimeter (double Scalar).
  */
 template< typename GeometryTraits >
@@ -72,10 +72,10 @@ triangle_perimeter(const typename GeometryTraits::Point &a,
  * \brief   Compute the unnormalized normal of a triangle (given by 3 points).
  *
  * \tparam GeometryTraits The geometric kernel.
- * \param a The first point.
- * \param b The second point.
- * \param c The third point.
- * \param gt The geometry trait object.
+ * \param[in] a The first point.
+ * \param[in] b The second point.
+ * \param[in] c The third point.
+ * \param[in] gt The geometry trait object.
  * \return The triangle unnormalized normal (Vector).
  */
 template< typename GeometryTraits >
@@ -95,9 +95,9 @@ triangle_normal_unnormalized(const typename GeometryTraits::Point &a,
  * \brief   Compute the area of a triangle (given by 3 points).
  *
  * \tparam GeometryTraits The geometric kernel.
- * \param a The first point.
- * \param b The second point.
- * \param c The third point.
+ * \param[in] a The first point.
+ * \param[in] b The second point.
+ * \param[in] c The third point.
  * \param gt The geometry trait object.
  * \return The triangle area (double Scalar).
  */
@@ -121,15 +121,15 @@ triangle_area(const typename GeometryTraits::Point &a,
  *                     Concept through a boost::graph_traits<> specialization.
  * \tparam  GeometryTraits  The geometric kernel when available. This is
                             defaulted to FEVV::Geometry_traits<FaceGraph>.
- * \param   a          The first point.
- * \param   b          The second point.
- * \param   c          The third point.
- * \param   PROHIB_ENERGY  The maximum authorized value, e.g. returns that
+ * \param[in]   a          The first point.
+ * \param[in]   b          The second point.
+ * \param[in]   c          The third point.
+ * \param[in]   PROHIB_ENERGY  The maximum authorized value, e.g. returns that
                            value if smaller than the computed shape potential.
                            This parameter is needed because when we compute the
                            mesh quality using the sum of shape potential of
                            each triangle, the sum may overflow.
- * \param   gt         The geometry trait object.
+ * \param[in]   gt         The geometry trait object.
  * \return  The triangle area (double Scalar).
  */
 template< typename FaceGraph,
@@ -175,8 +175,3 @@ triangle_shape_potential(
 } // namespace Geometry
 } // namespace Operators
 } // namespace FEVV
-
-#endif // !defined TrianglesTool_h
-
-#undef TrianglesTool_RECURSES
-#endif // else defined(TrianglesTool_RECURSES)

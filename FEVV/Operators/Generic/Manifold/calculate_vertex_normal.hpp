@@ -1,5 +1,14 @@
-#ifndef CALCULATE_VERTEX_NORMAL_H
-#define CALCULATE_VERTEX_NORMAL_H
+// Copyright (c) 2012-2019 University of Lyon and CNRS (France).
+// All rights reserved.
+//
+// This file is part of MEPP2; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as
+// published by the Free Software Foundation; either version 3 of
+// the License, or (at your option) any later version.
+//
+// This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+// WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+#pragma once
 
 #include <boost/graph/graph_traits.hpp>
 #include <boost/graph/properties.hpp>
@@ -27,7 +36,7 @@ namespace Operators {
  * \param[in] g     The mesh to which the vertex belongs
  * \param[in] pm    The Point Map holding the vertices geometry
  * \param[in] gt    The Geometry Traits associated to the mesh
- *
+ * \return   The vertex v' normal.
  * \ingroup  GenericManifoldFilters GenericNonManifoldFilters
  */
 template< typename HalfedgeGraph, typename PointMap, typename GeometryTraits >
@@ -94,7 +103,7 @@ catch(...)
  * \param[in] pm    The Point Map holding the vertices geometry
  * \param[in] fnm   The Face Normal Map providing the normals to incident faces
  * \param[in] gt    The Geometry Traits associated to the mesh
- *
+ * \return   The vertex v' normal.
  * \ingroup  GenericManifoldFilters GenericNonManifoldFilters
  */
 template< typename HalfedgeGraph,
@@ -154,5 +163,3 @@ catch(...)
 
 } // namespace Operators
 } // namespace FEVV
-
-#endif // CALCULATE_VERTEX_NORMAL_H
