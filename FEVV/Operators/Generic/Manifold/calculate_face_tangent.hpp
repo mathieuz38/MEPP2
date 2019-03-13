@@ -1,3 +1,13 @@
+// Copyright (c) 2012-2019 University of Lyon and CNRS (France).
+// All rights reserved.
+//
+// This file is part of MEPP2; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as
+// published by the Free Software Foundation; either version 3 of
+// the License, or (at your option) any later version.
+//
+// This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+// WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
 #pragma once
 
 #include <boost/graph/graph_traits.hpp>
@@ -13,15 +23,15 @@ namespace Operators {
  * \brief  Calculate a face tangent, then accumulate its value on every
  *         vertices it contains to average them; final vertex tangents are
  *         normalized later.
- *
- * \param  f    the face descriptor representing the face on which we compute
- *              the tangent.
- * \param  g    the halfedge graph from which we take the mesh's informations.
- * \param  pm   point map containing vertices' positions.
- * \param  uv1  first vertex's texture coordinates.
- * \param  uv2  second vertex's texture coordinates.
- * \param  uv3  third vertex's texture coordinates.
- * \param  vtm  vertex tangent map to be filled with computed tangents.
+ * \tparam  PointMap A modifiable point map to manage vertex positions.
+ * \param[in]  f    the face descriptor representing the face on which we compute
+ *                  the tangent.
+ * \param[in]  g    the halfedge graph from which we take the mesh's informations.
+ * \param[in]  pm   point map containing vertices' positions.
+ * \param[in]  uv1  first vertex's texture coordinates.
+ * \param[in]  uv2  second vertex's texture coordinates.
+ * \param[in]  uv3  third vertex's texture coordinates.
+ * \param[in,out] vtm  vertex tangent map to be filled with computed tangents.
  *
  * \ingroup  GenericManifoldFilters
  */

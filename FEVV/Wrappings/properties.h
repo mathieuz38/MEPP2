@@ -1,12 +1,21 @@
-#ifndef FEVV_PROPERTIES_H
-#define FEVV_PROPERTIES_H
-
+// Copyright (c) 2012-2019 University of Lyon and CNRS (France).
+// All rights reserved.
+//
+// This file is part of MEPP2; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as
+// published by the Free Software Foundation; either version 3 of
+// the License, or (at your option) any later version.
+//
+// This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+// WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+#pragma once
 
 #include <CGAL/boost/graph/properties.h>
 #include <boost/shared_ptr.hpp>
 #include <boost/any.hpp>
 
 #include "FEVV/Types/Material.h"
+#include "FEVV/Types/Gui_properties.h"
 #include "FEVV/Wrappings/Geometry_traits.h"
 
 /**
@@ -63,9 +72,13 @@ enum face_color_t { face_color };
 /// (refer to \ref GenericPropertyMapConceptPage)
 enum face_material_t { face_material };
 
-/// the materials property of a mesh
+/// the *materials* property of a mesh
 /// (refer to \ref GenericPropertyMapConceptPage)
 enum mesh_materials_t { mesh_materials };
+
+/// the *guiproperties* property of a mesh
+/// (refer to \ref GenericPropertyMapConceptPage)
+enum mesh_guiproperties_t { mesh_guiproperties };
 
 
 //---------------------------------------------------------
@@ -157,6 +170,12 @@ inline std::string get_property_map_name(FEVV::face_material_t)
 inline std::string get_property_map_name(FEVV::mesh_materials_t)
 {
   return std::string("m:materials");
+}
+
+/// (refer to \ref GenericPropertyMapConceptPage)
+inline std::string get_property_map_name(FEVV::mesh_guiproperties_t)
+{
+  return std::string("m:guiproperties");
 }
 
 
@@ -485,6 +504,23 @@ struct _PMap_traits< MeshT, FEVV::mesh_materials_t >
   }
 };
 
+// specialize the property maps traits for mesh gui properties
+// beware: this case is very specific, don't use it as a model
+template< typename MeshT >
+struct _PMap_traits< MeshT, FEVV::mesh_guiproperties_t >
+{
+  typedef FEVV::Types::GuiProperties value_type;
+  typedef typename boost::identity_property_map index_map_type;
+  typedef typename boost::vector_property_map< value_type, index_map_type >
+      pmap_type;
+
+  static pmap_type create(const MeshT &m)
+  {
+    pmap_type pmap;
+    return pmap;
+  }
+};
+
 
 // below is the interface to use property maps
 
@@ -609,4 +645,3 @@ make_halfedge_property_map(const MeshT &m)
 
 } // namespace FEVV
 
-#endif // FEVV_PROPERTIES_H

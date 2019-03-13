@@ -1,5 +1,14 @@
-#ifndef COLLAPSE_EDGE_EULER_H
-#define COLLAPSE_EDGE_EULER_H
+// Copyright (c) 2012-2019 University of Lyon and CNRS (France).
+// All rights reserved.
+//
+// This file is part of MEPP2; you can redistribute it and/or modify
+// it under the terms of the GNU Lesser General Public License as
+// published by the Free Software Foundation; either version 3 of
+// the License, or (at your option) any later version.
+//
+// This file is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE
+// WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+#pragma once
 
 #include <boost/graph/graph_traits.hpp>
 #include <CGAL/boost/graph/iterator.h>
@@ -14,10 +23,13 @@ namespace Operators {
  *        The halfedge source vertex is kept, and the halfedge
  *        target vertex is removed from the graph.
  *
- * Template parameters:
- *           MutableFaceGraph: a Mesh type that provides
- *                 a Model of the MutableFaceGraph Concept
- *                 through a boost::graph_traits<> specialization.
+ * \tparam  MutableFaceGraph a Mesh type that provides a Model of the
+ *          MutableFaceGraph Concept through a boost::graph_traits<>
+ *          specialization.
+ * \param g The MutableFaceGraph instance out of which the h edge will be
+ *          deleted.
+ * \param h The edge to be deleted designated through one of its
+ *          halfedges.
  */
 template< typename MutableFaceGraph >
 void
@@ -42,10 +54,13 @@ collapse_edge_keep_source_euler(
  *        The halfedge target vertex is kept, and the halfedge
  *        source vertex is removed from the graph.
  *
- * Template parameters:
- *           MutableFaceGraph: a Mesh type that provides
- *                 a Model of the MutableFaceGraph Concept
- *                 through a boost::graph_traits<> specialization.
+ * \tparam  MutableFaceGraph a Mesh type that provides a Model of the
+ *          MutableFaceGraph Concept through a boost::graph_traits<>
+ *          specialization.
+ * \param g The MutableFaceGraph instance out of which the h edge will be
+ *          deleted.
+ * \param h The edge to be deleted designated through one of its
+ *          halfedges.
  */
 template< typename MutableFaceGraph >
 void
@@ -65,5 +80,3 @@ collapse_edge_keep_target_euler(
 
 } // namespace Operators
 } // namespace FEVV
-
-#endif // COLLAPSE_EDGE_EULER_H
